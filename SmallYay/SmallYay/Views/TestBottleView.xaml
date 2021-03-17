@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.TestBottleView">
+  <ContentView.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ListView x:Name="TestListView" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="5" BackgroundColor="{DynamicResource UI_Color_1}" RowSpacing="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <!--<ColumnDefinition Width="50"></ColumnDefinition>-->
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--<BoxView Grid.Row="0" Grid.Column="0" Color="{Binding Color}" CornerRadius="5" Margin="5"></BoxView>-->
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding MainText}" Margin="5" TextColor="white" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding SubText}" Margin="5" TextColor="white" FontSize="Small" LineBreakMode="NoWrap" VerticalTextAlignment="Center"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <BoxView x:Name="TestBottleScreenDarken" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Fill" VerticalOptions="Fill" Color="#80000000" />
+            <ActivityIndicator 
+                    x:Name ="TestBottleActivityIndicator"
+                    Style="{StaticResource MyActivityIndicator}"
+                    IsRunning="true"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            </ActivityIndicator>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

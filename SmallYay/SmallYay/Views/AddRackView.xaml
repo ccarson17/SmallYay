@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.AddRackView" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame Style="{StaticResource PopupFrameStyle}" Padding="0">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                        <Label x:Name="ViewTitle" Text="Add New Wine Rack" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                    </StackLayout>
+                    <Grid RowSpacing="0" VerticalOptions="Center" Margin="10,0,10,0" Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Text="Rack Name" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="Medium" Margin="0" Padding="0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Entry Text="{Binding rack_name}" Placeholder="Enter Rack Name" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,20,20" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                        <Label Text="Rows" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Entry x:Name="rackrowsEntry" Text="{Binding rows}" Placeholder="Enter Rows" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="1" Keyboard="Numeric" Margin="0,0,20,20" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                        <Label Text="Columns" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Entry x:Name="rackcolsEntry" Text="{Binding cols}" Placeholder="Enter Columns" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Keyboard="Numeric" Margin="0,0,20,20" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                    </Grid>
+                    <Grid RowSpacing="0" Margin="0,0,0,20" Padding="10,0,10,0">
+                        <Button x:Name="RackViewSaveButton" Text="Add Rack" Clicked="RackViewSaveButton_Clicked" ImageSource="baseline_save_white_48dp.png" ContentLayout="Left,0" HorizontalOptions="FillAndExpand" VerticalOptions="End" Style="{StaticResource DefaultButtonStyle}" Grid.Column="0" Grid.Row="0"></Button>
+                        <Button x:Name="RackViewUpdateButton" Text="Update Rack" Clicked="RackViewUpdateButton_Clicked" ImageSource="baseline_save_white_48dp.png" ContentLayout="Left,0" HorizontalOptions="FillAndExpand" VerticalOptions="End" Style="{StaticResource DefaultButtonStyle}" Grid.Column="0" Grid.Row="0"></Button>
+                        <Button x:Name="RackViewCancelButton" Text="Cancel" Clicked="RackViewCancelButton_Clicked" ImageSource="baseline_close_white_48dp.png" ContentLayout="Left,0" HorizontalOptions="FillAndExpand" VerticalOptions="End" Style="{StaticResource DefaultButtonStyle}" Grid.Column="1" Grid.Row="0"></Button>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

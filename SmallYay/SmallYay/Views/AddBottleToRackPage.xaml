@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.AddBottleToRackPage" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <!--<ScrollView>-->
+        <Frame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame CornerRadius="10" BackgroundColor="{DynamicResource MainPageBackgroundColor}" Margin="10" VerticalOptions="Center" Padding="0" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ScrollView x:Name="bottleListSL" VerticalOptions="Center">
+                    <StackLayout>
+                        <Label Text="Add New Bottle" FontSize="Large" FontAttributes="Bold" Margin="5,10,5,5" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Button x:Name="AddBottleButton" Clicked="Add_Bottle_Clicked" Text="Add Bottle" FontAttributes="Bold" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Style="{StaticResource DefaultButtonStyle}"></Button>
+                        <Label Text="Unassigned Bottles" FontSize="Large" FontAttributes="Bold" Margin="5,10,5,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Label x:Name="NoUnassignedBottleLabel" Text="No unassigned bottles" FontSize="Medium" FontAttributes="Italic" Margin="10,0,5,20" IsVisible="false" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <ListView x:Name="UnassignedBottleList" ItemsSource="{Binding myBottles}" RowHeight="80" ItemTapped="ListView_ItemTapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <!--<Frame HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="{StaticResource Default_Element_Color}" Margin="3" CornerRadius="10" Padding="0">-->
+                                        <Frame Style="{StaticResource ListItemOuterFrameStyle}">
+                                            <Frame Style="{StaticResource ListItemFrameStyle}">
+                                                <Grid Margin="5,5,5,5" RowSpacing="0">
+                                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Vintner}" FontSize="Large" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" FontAttributes="Bold"  HorizontalOptions="Start" TextColor="{DynamicResource ItemTextColor}"/>
+                                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Year}" FontSize="Medium" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="{DynamicResource ItemTextColor}"/>
+                                                    <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding winename_display}" FontSize="Medium" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" HorizontalOptions="End" TextColor="{DynamicResource ItemTextColor}"/>
+                                                </Grid>
+                                            </Frame>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Frame>
+        <!--</ScrollView>-->
+
+    </ContentPage.Content>
+</ContentPage>

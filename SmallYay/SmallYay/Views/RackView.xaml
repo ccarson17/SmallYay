@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.RackView" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
+  <ContentView.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0">
+            <ScrollView x:Name="GridDisplaySV" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0, 0.55, 1, 0.82" AbsoluteLayout.LayoutFlags="All"></ScrollView>
+            <Frame AbsoluteLayout.LayoutBounds="0.5, 0.01, 0.95, 0.08" AbsoluteLayout.LayoutFlags="All" Padding="0" CornerRadius="15" VerticalOptions="CenterAndExpand" BackgroundColor="{DynamicResource ItemBackgroundColor}">
+                <StackLayout x:Name="FooterControlsSL" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"></StackLayout>
+            </Frame>
+            <Frame AbsoluteLayout.LayoutBounds="0.5, 0.992, 0.95, 0.08" AbsoluteLayout.LayoutFlags="All" Padding="0" CornerRadius="15" VerticalOptions="CenterAndExpand" BackgroundColor="{DynamicResource ItemBackgroundColor}">
+                <StackLayout x:Name="ZoomControlsSL" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Margin="0" Padding="0" Spacing="0"></StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+  </ContentView.Content>
+</ContentView>

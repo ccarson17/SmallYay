@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.ViewBottlePage" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame Style="{StaticResource PopupFrameStyle}" Padding="0">
+                <ScrollView>
+                    <StackLayout x:Name="bottleDetailSL" VerticalOptions="Center">
+                        <!--<Label Text=" Bottle Info" FontSize="Large" BackgroundColor="#540000" TextColor="White"></Label>-->
+                        <!--<BoxView Style="{StaticResource DividerStyle}"></BoxView>-->
+                            <Grid x:Name="bottleDetailGrid" RowSpacing="0">
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Grid_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                                <Label Text="{Binding vintner_winename_display}" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                <Label Text="{Binding location_display}" FontSize="Medium" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                            </StackLayout>
+                            <Expander x:Name="detailExpander" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Tapped="Expander_Tapped">
+                                <Expander.Header>
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Padding="20,10,0,0">
+                                            <Label Text="Year: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                            <Label Text="{Binding Year}" TextColor="{DynamicResource ItemTextColor}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                            <Label Text="Category: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                            <Label Text="{Binding Category}" TextColor="{DynamicResource ItemTextColor}"/>
+                                        </StackLayout>
+                                        <StackLayout x:Name="Size_label" Orientation="Horizontal"  Grid.Column="0" Grid.Row="2" Padding="20,0,0,0">
+                                            <Label Text="Size: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                            <Label Text="{Binding Size}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        </StackLayout>
+                                        <StackLayout x:Name="ABV_label" Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Padding="0,0,20,0">
+                                            <Label Text="ABV: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                            <Label Text="{Binding ABV}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </Expander.Header>
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Expanded_Content_Tapped"></TapGestureRecognizer>
+                                    </Grid.GestureRecognizers>
+                                    <StackLayout x:Name="WinemakerNotes_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Tasting Notes: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding WinemakerNotes}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                    </StackLayout>
+                                    <StackLayout x:Name="Rack_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Location: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding rack_position_display}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <!--<Label x:Name="position_display_label" Text="{Binding position_display, StringFormat=' ({0})'}"></Label>-->
+                                    </StackLayout>
+                                    <StackLayout x:Name="where_bought_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Purchased From: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding where_bought}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                    </StackLayout>
+                                    <StackLayout x:Name="price_paid_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Price: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding price_paid}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                    </StackLayout>
+                                    <StackLayout x:Name="user_rating_display_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Your Rating: " FontAttributes="Bold" HorizontalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <!--<Label Text="{Binding user_rating_display_nolabel}"></Label>-->
+                                        <StackLayout x:Name="starGroup" Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" HorizontalOptions="Center" Spacing="0" Margin="5,0,5,0" HeightRequest="18" Opacity="0.1">
+                                            <Image x:Name="star1" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                            <Image x:Name="star2" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                            <Image x:Name="star3" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                            <Image x:Name="star4" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                            <Image x:Name="star5" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout x:Name="user_notes_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Your Notes: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding user_notes}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                    </StackLayout>
+                                    <StackLayout x:Name="drink_date_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                        <Label Text="Drink Date: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding drink_date}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                    </StackLayout>
+
+                                </Grid>
+                            </Expander>
+                            <StackLayout x:Name="expand_Label" Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Padding="20,0,20,0">
+                                <Label Text="▼     Tap to show details     ▼" FontSize="Small"  TextColor="{DynamicResource ItemTextColor}" HorizontalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Expanded_Content_Tapped"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <StackLayout x:Name="contract_Label" Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Padding="20,0,20,0" Opacity="0">
+                                <Label Text="▲     Tap to hide details     ▲" FontSize="Small"  TextColor="{DynamicResource ItemTextColor}" HorizontalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Expanded_Content_Tapped"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+                        <!--<StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10,10,10,10">
+                            <Button x:Name="ReviewButton" Clicked="Review_Button_Clicked" Text="Rate This Bottle" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button x:Name="DrinkButton" Clicked="Drink_Button_Clicked" Text="Drink!" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button Clicked="Copy_Button_Clicked" Text="Copy" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button x:Name="EditButton" Clicked="EditButton_Clicked"  Text="Edit Bottle" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button x:Name="DeleteButton" Clicked="Delete_Button_Clicked" Text="Delete Bottle" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,10"></Button>
+                        </StackLayout>-->
+                        <Grid x:Name="ButtonGrid" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10,10,10,10" RowSpacing="0" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <!--<Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>-->
+                            <Button ContentLayout="Top,0" ImageSource="baseline_stars_white_48dp.png" x:Name="ReviewButton" Clicked="Review_Button_Clicked" Text="Rate" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"></Button>
+                            <Button ContentLayout="Top,0" ImageSource="baseline_wine_bar_white_48dp.png" x:Name="DrinkButton" Clicked="Drink_Button_Clicked" Text="Drink!" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"></Button>
+                            <Button ContentLayout="Top,0" ImageSource="baseline_content_copy_white_48dp.png" Clicked="Copy_Button_Clicked" Text="Copy" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"></Button>
+                            <Button ContentLayout="Top,0" ImageSource="baseline_edit_white_48dp.png" x:Name="EditButton" Clicked="EditButton_Clicked" Text="Edit" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"></Button>
+                            <Button ContentLayout="Top,0" ImageSource="baseline_delete_outline_white_48dp.png" x:Name="DeleteButton" Clicked="Delete_Button_Clicked" Text="Delete" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"></Button>
+                            <Button ContentLayout="Top,0" ImageSource="baseline_cancel_white_48dp.png" x:Name="CancelButton" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" IsVisible="false" Grid.ColumnSpan="2"></Button>
+                            <!--<Button ContentLayout="Top,0" ImageSource="baseline_cancel_white_48dp.png" x:Name="CancelButton" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"></Button>-->
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

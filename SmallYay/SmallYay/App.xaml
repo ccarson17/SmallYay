@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/CabernetTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <!--<ResourceDictionary Source="Themes/DarkTheme.xaml" />-->
+        <Style x:Key="DefaultRoundButtonStyle" TargetType="ImageButton">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            <Setter Property="CornerRadius" Value="30"></Setter>
+            <Setter Property="HeightRequest" Value="60"></Setter>
+            <Setter Property="WidthRequest" Value="60"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="Padding" Value="6"></Setter>
+        </Style>
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            <Setter Property="CornerRadius" Value="12"></Setter>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="Medium"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
+        </Style>
+        <Style x:Key="ListItemFrameStyle" TargetType="Frame">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+            <Setter Property="HasShadow" Value="False"></Setter>
+        </Style>
+        <Style x:Key="ListItemOuterFrameStyle" TargetType="Frame">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="CornerRadius" Value="17"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+        <Style x:Key="PopupFrameStyle" TargetType="Frame">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}"></Setter>
+            <Setter Property="Margin" Value="15"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+            <Setter Property="Padding" Value="3"></Setter>
+        </Style>
+        <Style x:Key="RackOuterFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+        <Style x:Key="RackBottleSlotStyle" TargetType="BoxView">
+            <Setter Property="Color" Value="{DynamicResource ItemBackgroundColor}"></Setter>
+        </Style>
+        <Style x:Key="LoginButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
+            <Setter Property="HeightRequest" Value="100"></Setter>
+            <Setter Property="FontSize" Value="Large"></Setter>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="CornerRadius" Value="0"></Setter>
+            <Setter Property="Padding" Value="15"></Setter>
+        </Style>
+        <Style x:Key="LogoutButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
+            <Setter Property="HeightRequest" Value="50"></Setter>
+            <Setter Property="FontSize" Value="Large"></Setter>
+            <Setter Property="CornerRadius" Value="0"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+        </Style>
+        <Style x:Key="MyActivityIndicator" TargetType="ActivityIndicator">
+            <Setter Property="Color" Value="#AAAAAA"></Setter>
+            <Setter Property="HeightRequest" Value="100"></Setter>
+            <Setter Property="WidthRequest" Value="100"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="DividerStyle" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+            <Setter Property="HeightRequest" Value="15"></Setter>
+        </Style>
+        <Style x:Key="RackItemStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource ItemTextColor}"></Setter>
+        </Style>
+        <Color x:Key="Red_Wine_Color">#4d0000</Color>
+        <Color x:Key="White_Wine_Color">#ffedab</Color>
+        <Color x:Key="Rose_Wine_Color">#f5dada</Color>
+        <Color x:Key="Sparkling_Wine_Color">#004501</Color>
+        <Color x:Key="Dessert_Wine_Color">#4e3b57</Color>
+        <Color x:Key="Default_Wine_Color">#616161</Color>
+        <Color x:Key="Default_Text_Color">#EEFFFFFF</Color>
+        <!--<Color x:Key="MainPageBackgroundColor">#EEEEEE</Color>
+        <Color x:Key="Default_Element_Color">#4d0000</Color>-->
+    </Application.Resources>
+</Application>

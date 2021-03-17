@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="MainTheme" parent="MainTheme.Base">
+    <item name="android:statusBarColor">#000000</item>
+    <item name="colorAccent">@color/ListViewSelectedLight</item>
+    <item name="colorControlNormal">@color/ListViewHighlightedLight</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:colorPressedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:colorLongPressedHighlight">@color/ListViewHighlightedLight</item>
+    <item name="android:colorFocusedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:activatedBackgroundIndicator">@color/ListViewSelectedLight</item>
+  </style>
+  
+  <style name="LightTheme" parent="MainTheme.Base">
+    <item name="android:statusBarColor">#5599CC</item>
+    <item name="colorAccent">@color/ListViewSelectedLight</item>
+    <item name="colorControlNormal">@color/ListViewHighlightedLight</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:colorPressedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:colorLongPressedHighlight">@color/ListViewHighlightedLight</item>
+    <item name="android:colorFocusedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelectedLight</item>
+    <item name="android:activatedBackgroundIndicator">@color/ListViewSelectedLight</item>
+  </style>
+  <color name="ListViewSelectedLight">#FF5599CC</color>
+  <color name="ListViewHighlightedLight">#AABBBBBB</color>
+
+  <style name="ChardonnayTheme" parent="MainTheme.Base">
+    <item name="android:statusBarColor">#355C37</item>
+    <item name="colorAccent">@color/ListViewSelectedChardonnay</item>
+    <item name="colorControlNormal">@color/ListViewHighChardonnayedChardonnay</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:colorPressedHighlight">@color/ListViewSelectedChardonnay</item>
+    <item name="android:colorLongPressedHighlight">@color/ListViewHighChardonnayedChardonnay</item>
+    <item name="android:colorFocusedHighlight">@color/ListViewSelectedChardonnay</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelectedChardonnay</item>
+    <item name="android:activatedBackgroundIndicator">@color/ListViewSelectedChardonnay</item>
+  </style>
+  <color name="ListViewSelectedChardonnay">#FF355C37</color>
+  <color name="ListViewHighChardonnayedChardonnay">#AABBBBBB</color>
+
+  <style name="CabernetTheme" parent="MainTheme.Base">
+    <item name="android:statusBarColor">#540000</item>
+    <item name="colorAccent">@color/ListViewSelectedCabernet</item>
+    <item name="colorControlNormal">@color/ListViewHighCabernetedCabernet</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:colorPressedHighlight">@color/ListViewSelectedCabernet</item>
+    <item name="android:colorLongPressedHighlight">@color/ListViewHighCabernetedCabernet</item>
+    <item name="android:colorFocusedHighlight">@color/ListViewSelectedCabernet</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelectedCabernet</item>
+    <item name="android:activatedBackgroundIndicator">@color/ListViewSelectedCabernet</item>
+  </style>
+  <color name="ListViewSelectedCabernet">#FF540000</color>
+  <color name="ListViewHighCabernetedCabernet">#AABBBBBB</color>
+
+  <style name="DarkTheme" parent="MainTheme.Base">
+    <item name="android:statusBarColor">#000000</item>
+    <item name="colorAccent">@color/ListViewSelectedDark</item>
+    <item name="colorControlNormal">@color/ListViewHighDarkedDark</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:colorPressedHighlight">@color/ListViewSelectedDark</item>
+    <item name="android:colorLongPressedHighlight">@color/ListViewHighDarkedDark</item>
+    <item name="android:colorFocusedHighlight">@color/ListViewSelectedDark</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelectedDark</item>
+    <item name="android:activatedBackgroundIndicator">@color/ListViewSelectedDark</item>
+  </style>
+  <color name="ListViewSelectedDark">#FFCCCCCC</color>
+  <color name="ListViewHighDarkedDark">#AABBBBBB</color>
+</resources>

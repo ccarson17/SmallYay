@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.BottleView" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
+  <ContentView.Content>
+        <AbsoluteLayout>
+            <StackLayout x:Name="mainLayout" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ListView x:Name="bottleList" ItemsSource="{Binding myBottles}" RowHeight="90" ItemTapped="ListView_ItemTapped" Margin="0,70,0,0">
+                    <!--<ListView.Header>
+                        <Label x:Name="HeaderHeightLabel" HeightRequest="70" SizeChanged="HeaderHeightLabel_SizeChanged"></Label>
+                    </ListView.Header>-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Style="{StaticResource ListItemOuterFrameStyle}">
+                                    <Frame Style="{StaticResource ListItemFrameStyle}">
+                                        <Grid RowSpacing="0" Padding="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="25" />
+                                                <RowDefinition Height="25" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="20" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalOptions="FillAndExpand" BackgroundColor="{Binding bottle_color}"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Vintner}" FontSize="Medium" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="0,2,2,0" TextColor="{DynamicResource ItemTextColor}"/>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding winename_display}" FontSize="Small" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="2,5,10,0" TextColor="{DynamicResource ItemTextColor}"/>
+
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding location_display}" FontSize="Small" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Margin="0,0,2,0" TextColor="{DynamicResource ItemTextColor}"/>
+                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding Year}" FontSize="Small" HorizontalOptions="End" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Margin="2,0,10,0" TextColor="{DynamicResource ItemTextColor}"/>
+
+                                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Category}" FontSize="Small" HorizontalOptions="Start" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Margin="0,0,2,5" TextColor="{DynamicResource ItemTextColor}"/>
+                                            <StackLayout Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" HorizontalOptions="End" VerticalOptions="CenterAndExpand" Spacing="0" Margin="2,0,10,5" Opacity="{Binding starOpacity}">
+                                                <Image x:Name="star1" Source="{Binding star1}"></Image>
+                                                <Image x:Name="star2" Source="{Binding star2}"></Image>
+                                                <Image x:Name="star3" Source="{Binding star3}"></Image>
+                                                <Image x:Name="star4" Source="{Binding star4}"></Image>
+                                                <Image x:Name="star5" Source="{Binding star5}"></Image>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Label HeightRequest="85"></Label>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+            <Frame x:Name="sortFilterFrame" AbsoluteLayout.LayoutBounds="0.5, 0.01, 0.95, 0.08" AbsoluteLayout.LayoutFlags="All" Padding="0" CornerRadius="15" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource ItemBackgroundColor}">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackLayout x:Name="SortFilterControlsSL" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="0" Padding="0" Spacing="0" Grid.Column="0" Grid.Row="0">
+                        <Button Style="{StaticResource DefaultButtonStyle}" Text="Search" CornerRadius="12" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ImageSource="baseline_search_white_48dp.png" ContentLayout="0, Left" Clicked="Search_Clicked"></Button>
+                        <Button Style="{StaticResource DefaultButtonStyle}" Text="Sort &amp; Filter" CornerRadius="12" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" ImageSource="baseline_tune_white_48dp.png" ContentLayout="0, Left" Clicked="SortFilter_Clicked"></Button>
+                    </StackLayout>
+                    <Grid x:Name="SortGrid" Grid.Column="0" Grid.Row="1" Padding="5" IsVisible="False" RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Text="Sort:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" TextColor="{DynamicResource ItemTextColor}" Margin="5,0,10,0"></Label>
+                        <Picker x:Name="SortOrderPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" TextColor="{DynamicResource ItemTextColor}" Margin="0,0,15,0"></Picker>
+                        <Label Text="Filter:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" Margin="5,0,10,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Label Text="Year:" FontSize="Medium" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,15,0" Padding="0">
+                            <Picker x:Name="MinYearFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                            <Label Text="to" FontSize="Medium" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Label>
+                            <Picker x:Name="MaxYearFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        </StackLayout>
+                        <Label Text="Category:" FontSize="Medium" VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Picker x:Name="CategoryFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,15,0" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        <Label Text="Varietal:" FontSize="Medium" VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Picker x:Name="VarietalFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="4" Grid.Column="1" Margin="0,0,15,0" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        <Label Text="Vintner:" FontSize="Medium" VerticalOptions="Center" Grid.Row="5" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Picker x:Name="VintnerFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="5" Grid.Column="1" Margin="0,0,15,0" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        <Label Text="Location:" FontSize="Medium" VerticalOptions="Center" Grid.Row="6" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Picker x:Name="LocationFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Grid.Row="6" Grid.Column="1" Margin="0,0,15,0" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        <Label Text="Price:" FontSize="Medium" VerticalOptions="Center" Grid.Row="7" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Margin="0,0,15,0" Padding="0" Spacing="0">
+                            <Label Text="$" FontSize="Medium" VerticalOptions="Center" Margin="0" Padding="0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                            <Entry x:Name="MinPriceEntry" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" TextColor="{DynamicResource ItemTextColor}"></Entry>
+                            <Label Text="to $" FontSize="Medium" VerticalOptions="Center" Margin="0" Padding="0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                            <Entry x:Name="MaxPriceEntry" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" TextColor="{DynamicResource ItemTextColor}"></Entry>
+                        </StackLayout>
+                        <Label Text="Rating:" FontSize="Medium" VerticalOptions="Center" Grid.Row="8" Grid.Column="0" Margin="15,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Margin="0,0,15,0" Padding="0">
+                            <Picker x:Name="MinRatingFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                            <Label Text="to" FontSize="Medium" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Label>
+                            <Picker x:Name="MaxRatingFilterPicker" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Picker>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" Margin="0,15,0,0">
+                            <Button Style="{StaticResource DefaultButtonStyle}" Text="Apply" Clicked="SortFilterApply_Clicked" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"></Button>
+                            <Button Style="{StaticResource DefaultButtonStyle}" Text="Clear" Clicked="SortFilterClear_Clicked" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"></Button>
+                        </StackLayout>
+                    </Grid>
+                    <Grid x:Name="SearchGrid" Grid.Column="0" Grid.Row="1" Padding="0" IsVisible="False" RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Text="Search:" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Margin="5,0,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Entry x:Name="SearchEntry" FontSize="Medium" Grid.Row="0" Grid.Column="1" Margin="0,20,15,20" ClearButtonVisibility="WhileEditing" Completed="SearchEntry_Completed" TextColor="{DynamicResource ItemTextColor}"></Entry>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand">
+                            <Button Style="{StaticResource DefaultButtonStyle}" Text="Search" Clicked="SearchApply_Clicked" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Button>
+                            <Button Style="{StaticResource DefaultButtonStyle}" Text="Clear" Clicked="SearchClear_Clicked" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Button>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Frame>
+            <Frame AbsoluteLayout.LayoutBounds="0.98,0.99,80,80" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="10" CornerRadius="30" HasShadow="True" BackgroundColor="{DynamicResource ItemBackgroundColor}">
+                <ImageButton Source="baseline_add_white_48dp.png" Clicked="Add_Bottle_Clicked" Style="{StaticResource DefaultRoundButtonStyle}"></ImageButton>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

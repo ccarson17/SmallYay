@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.MainPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             BarBackgroundColor="{DynamicResource Nav_Background_Color}"
+             SelectedTabColor="{DynamicResource Nav_Selected_Color}"
+             UnselectedTabColor="{DynamicResource Nav_Unselected_Color}"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.BarItemColor="Black"           
+             android:TabbedPage.BarSelectedItemColor="{DynamicResource Nav_Selected_Color}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage x:Name="HomeContentPage" Title="Home" IconImageSource="baseline_home_black_36.png" Appearing="HomePage_Appearing" />
+    <ContentPage x:Name="BottlesContentPage" Title="Bottles" IconImageSource="bottle_144px.png" Appearing="BottlePage_Appearing" />
+    <ContentPage x:Name="RacksContentPage" Title="Racks" IconImageSource="baseline_grid_on_black_36.png" Appearing="RackPage_Appearing" />
+    <ContentPage x:Name ="HistoryContentPage" Title="History" IconImageSource="baseline_history_black_36.png" Appearing="HistoryPage_Appearing"/>
+    <ContentPage x:Name ="AccountContentPage" Title="Account" IconImageSource="baseline_person_black_48dp.png" Appearing="AccountPage_Appearing"/>
+</TabbedPage>

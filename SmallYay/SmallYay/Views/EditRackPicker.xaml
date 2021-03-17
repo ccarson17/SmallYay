@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.EditRackPicker" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <!--<ScrollView>-->
+        <Frame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame Style="{StaticResource PopupFrameStyle}" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0">
+                <ScrollView x:Name="bottleListSL" VerticalOptions="Center">
+                    <StackLayout>
+                        <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                            <Label Text="Choose Rack to Edit" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                        </StackLayout>
+                        <ListView x:Name="UnassignedBottleList" ItemsSource="{Binding myRacks}" RowHeight="80" ItemTapped="ListView_ItemTapped" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Style="{StaticResource ListItemFrameStyle}" Margin="5" Padding="15" HasShadow="True">
+                                            <Grid Margin="5,5,5,5" RowSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding rack_name}" FontSize="Medium" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" FontAttributes="Bold"  HorizontalOptions="Start" TextColor="{DynamicResource ItemTextColor}"/>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding rows, StringFormat='Rows: {0},'}" FontSize="Small" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="{DynamicResource ItemTextColor}"/>
+                                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding cols, StringFormat='Columns: {0}'}" FontSize="Small" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="{DynamicResource ItemTextColor}"/>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Frame>
+        <!--</ScrollView>-->
+
+    </ContentPage.Content>
+</ContentPage>

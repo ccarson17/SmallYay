@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="SmallYay.ChardonnayTheme">
+    <Color x:Key="PrimaryColor">#355c37</Color>
+    <Color x:Key="PageBackgroundColor">#fcfcf5</Color>
+    <Color x:Key="ItemBackgroundColor">#fffeed</Color>
+    <Color x:Key="ItemTextColor">#AA000000</Color>
+    <Color x:Key="PlaceholderColor">#55000000</Color>
+    <Color x:Key="Default_Text_Color">#EEFFFFFF</Color>
+    <Color x:Key="UI_Color_1">#355c37</Color>
+    <Color x:Key="UI_Color_2">#555555</Color>
+    <Color x:Key="UI_Color_3">#BBBBBB</Color>
+    <Color x:Key="UI_Color_4">#355c37</Color>
+    <Color x:Key="MainPageBackgroundColor">#fcfcf5</Color>
+    <Color x:Key="Default_Element_Color">#355c37</Color>
+    <Color x:Key="Nav_Selected_Color">#5fa362</Color>
+    <Color x:Key="Nav_Unselected_Color">#444444</Color>
+    <Color x:Key="Nav_Background_Color">#fffeed</Color>
+    <Color x:Key="HeaderColor">#50355c37</Color>
+</ResourceDictionary>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.1 Beta" package="com.oenofile" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="28" />
+	<application android:label="OenoFile" android:theme="@style/MainTheme" android:icon="@drawable/app_logo3">
+		<!-- Callback from authentication screen -->
+		<activity android:name="net.openid.appauth.RedirectUriReceiverActivity">
+			<!-- Filter which captures custom scheme based redirects for Okta authorization requests. -->
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="{reverseDomainName}" />
+			</intent-filter>
+		</activity>
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+</manifest>

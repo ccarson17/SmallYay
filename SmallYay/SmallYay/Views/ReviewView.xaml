@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.ReviewView" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame x:Name="MainFrame" Style="{StaticResource PopupFrameStyle}" Padding="0" Margin="0" VerticalOptions="Center">
+                <ScrollView>
+                    <StackLayout x:Name="bottleDetailSL" VerticalOptions="StartAndExpand">
+                        <Grid RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="150"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackLayout x:Name="HeaderBG" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                                <Label x:Name="Popup_Title" Text="{Binding vintner_winename_display, StringFormat='Review - {0}'}" FontSize="Large" LineBreakMode="TailTruncation" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                            </StackLayout>
+                            <!--<StackLayout Grid.Column="0" Grid.Row="1" Padding="10,0,10,0">-->
+                            <Label Text="Your Rating" FontSize="Medium" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Margin="10,20,10,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                <StackLayout x:Name="starGroup" Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" HorizontalOptions="End" Spacing="0" Margin="0,20,20,5">
+                                    <Image x:Name="star1" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                    <Image x:Name="star2" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                    <Image x:Name="star3" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                    <Image x:Name="star4" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                    <Image x:Name="star5" Source="baseline_star_border_black_48dp_empty.png"></Image>
+                                </StackLayout>
+                            <Slider Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,0,10,0" Maximum="10" Minimum="1" Value="{Binding user_rating}" MinimumTrackColor="{DynamicResource UI_Color_2}" MaximumTrackColor="{DynamicResource UI_Color_3}" ThumbColor="{DynamicResource UI_Color_4}" ValueChanged="Slider_ValueChanged"></Slider>
+                            <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,20,10,0" Text="Your Review" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                <AbsoluteLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="20,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                                    <Frame x:Name="ReviewEditorFrame" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" CornerRadius="10" Padding="20,0,20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  BorderColor="LightGray" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
+                                    <Editor x:Name="ReviewEditor" Text="{Binding user_notes}" Margin="0" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Editor>
+                                    </Frame>
+                                </AbsoluteLayout>
+                            <!--</StackLayout>-->
+                        </Grid>
+                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10,10,10,10">
+                            <Button x:Name="Popup_Save_Button" Clicked="Save_Button_Clicked" Text="Save" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,0"></Button>
+                            <Button x:Name="Popup_Close_Button" Clicked="Cancel_Button_Clicked" Text="Cancel" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,10"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

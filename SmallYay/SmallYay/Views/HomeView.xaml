@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.HomeView">
+    <ContentView.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image x:Name="backgroundImage" Source="pexels_bruno_cantuaria_774455.jpg" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional">
+                <Frame BackgroundColor="{DynamicResource HeaderColor}" Padding="24" CornerRadius="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="app_logo3.png" HeightRequest="96" WidthRequest="96" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0"></Image>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Padding="0" VerticalOptions="Start" Spacing="0" Margin="0,12,0,0">
+                            <Label Text="OenoFile" HorizontalTextAlignment="Start" TextColor="{DynamicResource Default_Text_Color}" FontSize="36" HeightRequest="44"/>
+                            <Label Text="Track Your Wine" HorizontalTextAlignment="Start" TextColor="{DynamicResource Default_Text_Color}" FontSize="16" HeightRequest="20"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+                <StackLayout VerticalOptions="Center">
+                    <Label x:Name="WelcomeLabel" Text="Please log in to see your wine collection" TextColor="{DynamicResource Default_Text_Color}" FontSize="Title" Padding="30" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout x:Name="LoginPanel" VerticalOptions="EndAndExpand" HeightRequest="100" Margin="10">
+                    <Button Clicked="LoginClicked" Text="Log In" VerticalOptions="StartAndExpand" Style="{StaticResource LoginButtonStyle}"></Button>
+                </StackLayout>
+                <!--<StackLayout x:Name="LogoutPanel" IsVisible="False" VerticalOptions="EndAndExpand" HeightRequest="50" Margin="10">
+                    <Button Clicked="LogoutClicked" Text="Log Out" VerticalOptions="StartAndExpand" Style="{StaticResource LogoutButtonStyle}"></Button>
+                </StackLayout>-->
+            </StackLayout>
+            <BoxView x:Name="LoginScreenDarken" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Fill" VerticalOptions="Fill" Color="#80000000" IsVisible="false" />
+            <ActivityIndicator 
+                    x:Name ="LoginActivityIndicator"
+                    Style="{StaticResource MyActivityIndicator}"
+                    IsRunning="false"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            </ActivityIndicator>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

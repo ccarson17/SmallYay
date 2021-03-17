@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.AccountView" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
+    <ContentView.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional">
+                <StackLayout x:Name="LoginPanel" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="50" Margin="10">
+                    <Label Text="Please Log In" FontSize="Large" TextColor="{DynamicResource ItemTextColor}"></Label>
+                </StackLayout>
+                <StackLayout x:Name="AccountContentPanel" Margin="10">
+                    <Label Text="Your Info" FontSize="Large" FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                    <Label x:Name="nameLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                    <Label x:Name="emailLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                    <Label Text="Theme" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                    <Button Text="Cabernet (Default)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Cabernet_Button_Clicked"></Button>
+                    <Button Text="Chardonnay" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Chardonnay_Button_Clicked"></Button>
+                    <Button Text="Blanc (Light)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Light_Button_Clicked"></Button>
+                    <Button Text="Noir (Dark)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Dark_Button_Clicked"></Button>
+                </StackLayout>
+                <!--<StackLayout x:Name="LogoutPanel" IsVisible="False" VerticalOptions="EndAndExpand" HeightRequest="50" Margin="10">-->
+                <StackLayout x:Name="LogoutPanel" IsVisible="False" VerticalOptions="EndAndExpand" Margin="20">
+                    <Button Clicked="LogoutClicked" Text="Log Out" VerticalOptions="StartAndExpand" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+            </StackLayout>
+            <BoxView x:Name="LoginScreenDarken" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Fill" VerticalOptions="Fill" Color="#80000000" IsVisible="false" />
+            <ActivityIndicator 
+                    x:Name ="LoginActivityIndicator"
+                    Style="{StaticResource MyActivityIndicator}"
+                    IsRunning="false"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            </ActivityIndicator>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:collection="clr-namespace:System.Collections.Generic;assembly=System.Collections"
+             x:Class="SmallYay.Views.AddBottlePage" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#60000000" Padding="7" Margin="0">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame Style="{StaticResource PopupFrameStyle}" Padding="0" Margin="0">
+                <ScrollView>
+                <AbsoluteLayout>
+                    <StackLayout>
+                        <Label Text=" Bottle Info" FontSize="Large" BackgroundColor="{DynamicResource UI_Color_1}" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                        <!--<BoxView Style="{StaticResource DividerStyle}"></BoxView>-->
+                        <Grid RowSpacing="0" Margin="10,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <autocomplete:SfAutoComplete x:Name="VintnerAC" ShowClearButton="False" Text="{Binding Vintner, Mode=TwoWay}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <autocomplete:SfAutoComplete x:Name="VarietalAC" ShowClearButton="False" Text="{Binding Varietal, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <autocomplete:SfAutoComplete x:Name="WinenameAC" ShowClearButton="False" Text="{Binding WineName, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <!--<Entry Text="{Binding Vintner, Mode=TwoWay}" Placeholder="Vintner (required)" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>-->
+                                <!--<Entry Text="{Binding Varietal, Mode=TwoWay}" Placeholder="Varietal (required)" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>-->
+                                <!--<Entry Text="{Binding WineName, Mode=TwoWay}" Placeholder="Wine Name (required)" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>-->
+                                <Label x:Name="CategoryLabel" Text="Category (required)" FontSize="Medium" VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="4" TextColor="{DynamicResource PlaceholderColor}"></Label>
+                                <Picker x:Name="CategoryPicker" SelectedItem="{Binding Category, Mode=OneWay}" Grid.Column="0" Grid.Row="3" SelectedIndexChanged="CategoryPicker_SelectedIndexChanged" TextColor="{DynamicResource ItemTextColor}"/>
+                                <Label x:Name="YearLabel" Text="Year (required)" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" Margin="4"  TextColor="{DynamicResource PlaceholderColor}"></Label>
+                                <Picker x:Name="YearPicker" SelectedItem="{Binding Year, Mode=OneWay}" Grid.Column="1" Grid.Row="3" SelectedIndexChanged="YearPicker_SelectedIndexChanged" TextColor="{DynamicResource ItemTextColor}"/>
+                                <Entry Text="{Binding Size, Mode=TwoWay}" Placeholder="Bottle Size (ml)" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding ABV, Mode=TwoWay}" Placeholder="ABV (%)" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding WinemakerNotes, Mode=TwoWay}" Placeholder="Winemaker Notes" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                            </Grid>
+                            <Label Text=" Winery Location" FontSize="Large" BackgroundColor="{DynamicResource UI_Color_1}" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                        <Grid RowSpacing="0" Margin="10,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>-->
+                            </Grid.ColumnDefinitions>
+                                <autocomplete:SfAutoComplete x:Name="RegionAC" ShowClearButton="False" Text="{Binding Region, Mode=TwoWay}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <autocomplete:SfAutoComplete x:Name="CityAC" ShowClearButton="False" Text="{Binding City_Town, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <autocomplete:SfAutoComplete x:Name="StateAC" ShowClearButton="False" Text="{Binding State_Province, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <autocomplete:SfAutoComplete x:Name="CountryAC" ShowClearButton="False" Text="{Binding Country, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <!--<Entry Text="{Binding Region, Mode=TwoWay}" Placeholder="Region" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding City_Town, Mode=TwoWay}" Placeholder="City/Town" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding State_Province, Mode=TwoWay}" Placeholder="State/Province" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding Country, Mode=TwoWay}" Placeholder="Country" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>-->
+                            </Grid>
+                            <Label Text=" Your Details" FontSize="Large" BackgroundColor="{DynamicResource UI_Color_1}" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                        <Grid x:Name="RacksGrid" RowSpacing="0" Margin="10, 0, 10, 0" IsVisible="True">
+                                <Label x:Name="RackLabel" Text="Wine Rack" FontSize="Medium" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="4" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                <Picker x:Name="RackPicker" SelectedItem="{Binding rack_name, Mode=TwoWay}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectedIndexChanged="RackPicker_SelectedIndexChanged" TextColor="{DynamicResource ItemTextColor}"/>
+                            <!--<Entry Text="{Binding rack_name, Mode=TwoWay}" Placeholder="Rack" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"></Entry>-->
+                                <Entry x:Name="RackRow" Text="{Binding row, Mode=OneWayToSource}" Placeholder="Row" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry x:Name="RackCol" Text="{Binding col, Mode=OneWayToSource}" Placeholder="Column" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                        </Grid>
+                        <Grid x:Name="NoRacksGrid" RowSpacing="0" Margin="10, 0, 10, 0" IsVisible="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <Label Text="You don't have any wine racks yet!" FontSize="Medium" VerticalOptions="Start" Grid.Column="0" Grid.Row="0" Margin="4"  TextColor="{DynamicResource ItemTextColor}"></Label>
+                                <Button Clicked="Add_Rack_Button_Clicked" Text="Add New Wine Rack" VerticalOptions="CenterAndExpand" Style="{StaticResource DefaultButtonStyle}" Grid.Column="1" Grid.Row="0"></Button>
+                        </Grid>
+                        <Grid RowSpacing="0" Margin="10,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>-->
+                            </Grid.ColumnDefinitions>
+                                <autocomplete:SfAutoComplete x:Name="WhereBoughtAC" ShowClearButton="False" Text="{Binding where_bought, Mode=TwoWay}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource PlaceholderColor}" TextSize="Medium" DropDownBorderColor="{DynamicResource PrimaryColor}" DropDownTextColor="{DynamicResource ItemTextColor}" DropDownCornerRadius="9" DropDownTextSize="Medium" DropDownBackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                                <!--<Entry Text="{Binding where_bought, Mode=TwoWay}" Placeholder="Where Bought" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>-->
+                                <Entry Text="{Binding price_paid, Mode=TwoWay}" Placeholder="Price Paid" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                            <!--<Entry Text="{Binding user_rating, Mode=TwoWay}" Placeholder="Your Rating" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Keyboard="Numeric"></Entry>-->
+                            <!--<Entry Text="{Binding drink_date, Mode=TwoWay}" Placeholder="Drink Date" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"></Entry>-->
+                            <!--<Entry Text="{Binding user_notes, Mode=TwoWay}" Placeholder="Your Notes" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"></Entry>-->
+                        </Grid>
+                        <Grid RowSpacing="0"  Margin="10,0,10,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <Button Clicked="Save_Button_Clicked" ImageSource="baseline_save_white_48dp.png" ContentLayout="Left,0" Text="Save Bottle" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0"></Button>
+                                <Button Clicked="Cancel_Button_Clicked" ImageSource="baseline_close_white_48dp.png" ContentLayout="Left,0" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Grid.Column="1" Grid.Row="0"></Button>
+                        </Grid>
+                    </StackLayout>
+                    <BoxView x:Name="AddRackPopupBackground" BackgroundColor="#80FFFFFF" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="PositionProportional, SizeProportional" IsVisible="False"></BoxView>
+                    <Frame x:Name="AddRackPopup" HasShadow="True" Margin="0" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.5" AbsoluteLayout.LayoutFlags="PositionProportional, SizeProportional" CornerRadius="15" BackgroundColor="white" BorderColor="#AAAAAA" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False">
+                        <StackLayout>
+                            <Label Text="Add New Wine Rack" FontSize="Large" HorizontalOptions="Center" TextColor="{DynamicResource ItemTextColor}"></Label>
+                            <Grid RowSpacing="0" VerticalOptions="CenterAndExpand" Margin="10">
+                                <Entry Text="{Binding rack_name, Mode=TwoWay}" Placeholder="Rack Name" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding row}" Placeholder="Rows" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                                <Entry Text="{Binding col}" Placeholder="Columns" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Keyboard="Numeric" TextColor="{DynamicResource ItemTextColor}" PlaceholderColor="{DynamicResource PlaceholderColor}"></Entry>
+                            </Grid>
+                            <Grid RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                    <Button x:Name="RackViewSaveButton" Clicked="RackViewSaveButton_Clicked" Text="Save Rack" Style="{StaticResource DefaultButtonStyle}" Grid.Column="0" Grid.Row="0"></Button>
+                                    <Button x:Name="RackViewCancelButton" Clicked="RackViewCancelButton_Clicked" Text="Cancel" Style="{StaticResource DefaultButtonStyle}" Grid.Column="1" Grid.Row="0"></Button>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </AbsoluteLayout>
+            </ScrollView>
+            </Frame>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
