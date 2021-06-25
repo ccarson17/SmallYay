@@ -26,7 +26,8 @@ namespace SmallYay.Config
 
         public static readonly string LogoutEndpoint = $"{OrgUrl}/oauth2/{AuthorizationServerId}/v1/logout";
 
-        public static readonly string WineApiUrl = "http://wineapi-dev.us-east-1.elasticbeanstalk.com/api";
+        public static readonly string WineApiUrl = "https://oenofile-api.azurewebsites.net/api";
+        //public static readonly string WineApiUrl = "http://wineapi-dev.us-east-1.elasticbeanstalk.com/api";
         //public static readonly string WineApiUrl = "http://localhost:51044/api";
 
         // Default Values for fields
