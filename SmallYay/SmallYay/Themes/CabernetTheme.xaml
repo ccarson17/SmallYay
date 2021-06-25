@@ -4,6 +4,7 @@
     <Color x:Key="PrimaryColor">#540000</Color>
     <Color x:Key="PageBackgroundColor">#EEEEEE</Color>
     <Color x:Key="ItemBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="PopupBackgroundColor">#FFFFFF</Color>
     <Color x:Key="ItemTextColor">#AA000000</Color>
     <Color x:Key="PlaceholderColor">#55000000</Color>
     <Color x:Key="Default_Text_Color">#EEFFFFFF</Color>
@@ -17,4 +18,5 @@
     <Color x:Key="Nav_Unselected_Color">#444444</Color>
     <Color x:Key="Nav_Background_Color">#FFFFFF</Color>
     <Color x:Key="HeaderColor">#50540000</Color>
+    <Color x:Key="PingColor">#444444</Color>
 </ResourceDictionary>

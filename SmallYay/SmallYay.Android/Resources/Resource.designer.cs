@@ -13819,25 +13819,28 @@ namespace SmallYay.Droid
 			public const int notify_panel_notification_icon_bg = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int pexels_bruno_cantuaria_774455 = 2131165372;
+			public const int outline_location_on_white_48dp = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int pexels_polina_tankilevitch_4110415 = 2131165373;
+			public const int pexels_bruno_cantuaria_774455 = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int sfclosebutton = 2131165374;
+			public const int pexels_polina_tankilevitch_4110415 = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int styleinfo = 2131165375;
+			public const int sfclosebutton = 2131165375;
 			
 			// aapt resource value: 0x7F0700C0
-			public const int tooltip_frame_dark = 2131165376;
+			public const int styleinfo = 2131165376;
 			
 			// aapt resource value: 0x7F0700C1
-			public const int tooltip_frame_light = 2131165377;
+			public const int tooltip_frame_dark = 2131165377;
 			
 			// aapt resource value: 0x7F0700C2
-			public const int WineApp_Logo = 2131165378;
+			public const int tooltip_frame_light = 2131165378;
+			
+			// aapt resource value: 0x7F0700C3
+			public const int WineApp_Logo = 2131165379;
 			
 			static Drawable()
 			{

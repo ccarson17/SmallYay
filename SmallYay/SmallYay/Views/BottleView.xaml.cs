@@ -334,26 +334,33 @@ namespace SmallYay.Views
             MinRatingFilterPicker.SelectedItem = Application.Current.Properties["bottle_MinRating"];
             MaxRatingFilterPicker.SelectedItem = Application.Current.Properties["bottle_MaxRating"];
             SortOrderPicker.SelectedItem = Application.Current.Properties["bottle_SortOrder"];
-            MaxPriceEntry.Text = Application.Current.Properties["bottle_MaxPrice"].ToString();
-            MinPriceEntry.Text = Application.Current.Properties["bottle_MinPrice"].ToString();
+            MaxPriceEntry.Text = (Application.Current.Properties["bottle_MaxPrice"] ?? "").ToString();
+            MinPriceEntry.Text = (Application.Current.Properties["bottle_MinPrice"] ?? "").ToString();
             SearchEntry.Text = (Application.Current.Properties["bottle_SearchQuery"] ?? "").ToString();
         }
 
         async void initializeFilterSettings()
         {
-            if (!Application.Current.Properties.ContainsKey("bottle_MinYear")) Application.Current.Properties["bottle_MinYear"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_MaxYear")) Application.Current.Properties["bottle_MaxYear"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_Category")) Application.Current.Properties["bottle_Category"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_Varietal")) Application.Current.Properties["bottle_Varietal"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_Vintner")) Application.Current.Properties["bottle_Vintner"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_Location")) Application.Current.Properties["bottle_Location"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("bottle_MinRating")) Application.Current.Properties["bottle_MinRating"] = "0";
-            if (!Application.Current.Properties.ContainsKey("bottle_MaxRating")) Application.Current.Properties["bottle_MaxRating"] = "0";
-            if (!Application.Current.Properties.ContainsKey("bottle_MaxPrice")) Application.Current.Properties["bottle_MaxPrice"] = "";
-            if (!Application.Current.Properties.ContainsKey("bottle_MinPrice")) Application.Current.Properties["bottle_MinPrice"] = "";
-            if (!Application.Current.Properties.ContainsKey("bottle_SortOrder")) Application.Current.Properties["bottle_SortOrder"] = "Vintner";
-            if (!Application.Current.Properties.ContainsKey("bottle_SearchQuery")) Application.Current.Properties["bottle_SearchQuery"] = "";
-            await Application.Current.SavePropertiesAsync();
+            try
+            {
+                if (!Application.Current.Properties.ContainsKey("bottle_MinYear")) Application.Current.Properties["bottle_MinYear"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_MaxYear")) Application.Current.Properties["bottle_MaxYear"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_Category")) Application.Current.Properties["bottle_Category"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_Varietal")) Application.Current.Properties["bottle_Varietal"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_Vintner")) Application.Current.Properties["bottle_Vintner"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_Location")) Application.Current.Properties["bottle_Location"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("bottle_MinRating")) Application.Current.Properties["bottle_MinRating"] = "0";
+                if (!Application.Current.Properties.ContainsKey("bottle_MaxRating")) Application.Current.Properties["bottle_MaxRating"] = "0";
+                if (!Application.Current.Properties.ContainsKey("bottle_MaxPrice")) Application.Current.Properties["bottle_MaxPrice"] = "";
+                if (!Application.Current.Properties.ContainsKey("bottle_MinPrice")) Application.Current.Properties["bottle_MinPrice"] = "";
+                if (!Application.Current.Properties.ContainsKey("bottle_SortOrder")) Application.Current.Properties["bottle_SortOrder"] = "Vintner";
+                if (!Application.Current.Properties.ContainsKey("bottle_SearchQuery")) Application.Current.Properties["bottle_SearchQuery"] = "";
+                await Application.Current.SavePropertiesAsync();
+            }
+            catch(Exception ex)
+            {
+                var message = ex.Message;
+            }
         }
 
         UserBottleFilter getBottleFilter()

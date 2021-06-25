@@ -28,6 +28,18 @@
             <Setter Property="FontAttributes" Value="Bold"></Setter>
             <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
         </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Default_Element_Color}"></Setter>
+            <Setter Property="CornerRadius" Value="12"></Setter>
+            <Setter Property="HorizontalOptions" Value="End"></Setter>
+            <Setter Property="VerticalOptions" Value="Start"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+            <Setter Property="FontSize" Value="Medium"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="WidthRequest" Value="50"></Setter>
+            <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
+        </Style>        
         <Style x:Key="ListItemFrameStyle" TargetType="Frame">
             <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
             <Setter Property="VerticalOptions" Value="Center"></Setter>
@@ -48,7 +60,7 @@
         <Style x:Key="PopupFrameStyle" TargetType="Frame">
             <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
             <Setter Property="VerticalOptions" Value="Center"></Setter>
-            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}"></Setter>
+            <Setter Property="BackgroundColor" Value="{DynamicResource PopupBackgroundColor}"></Setter>
             <Setter Property="Margin" Value="15"></Setter>
             <Setter Property="CornerRadius" Value="15"></Setter>
             <Setter Property="Padding" Value="3"></Setter>
@@ -62,7 +74,10 @@
         <Style x:Key="RackBottleSlotStyle" TargetType="BoxView">
             <Setter Property="Color" Value="{DynamicResource ItemBackgroundColor}"></Setter>
         </Style>
-        <Style x:Key="LoginButtonStyle" TargetType="Button">
+        <Style x:Key="RackBottleSlotStyleHighlight" TargetType="BoxView">
+            <Setter Property="Color" Value="{DynamicResource PingColor}"></Setter>
+        </Style>
+         <Style x:Key="LoginButtonStyle" TargetType="Button">
             <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
             <Setter Property="TextColor" Value="{DynamicResource Default_Text_Color}"></Setter>
             <Setter Property="HeightRequest" Value="100"></Setter>

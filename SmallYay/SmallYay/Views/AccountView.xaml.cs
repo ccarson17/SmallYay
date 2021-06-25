@@ -17,6 +17,8 @@ namespace SmallYay.Views
         private readonly LoginService loginService = new LoginService();
         private readonly OktaApiInterface oktaApiInterface = new OktaApiInterface();
         private readonly WineAPIService wineApiService = new WineAPIService();
+        private readonly ErrorLog errorLog = new ErrorLog(true);
+        public List<ErrorLogEntry> myErrors = new List<ErrorLogEntry>();
 
         public AccountView()
         {
@@ -165,6 +167,41 @@ namespace SmallYay.Views
             else
                 App.Current.Properties.Add("SelectedTheme", theme);
             await App.Current.SavePropertiesAsync();
+        }
+
+        private void View_Error_Logs_Clicked(object sender, EventArgs e)
+        {
+            myErrors = errorLog.LogEntries.OrderByDescending(x => x.EntryDateTime).ToList();
+
+            // add test errors
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    var testerror = new ErrorLogEntry()
+            //    {
+            //        EntryDateTime = DateTime.Now,
+            //        ExceptionMessage = "Test Error " + i,
+            //        ExceptionSource = "Source",
+            //        InnerException = "Inner Exception",
+            //        StackTrace = "Tracey Tracerson"
+            //    };
+            //    myErrors.Add(testerror);
+            //}
+            // end add test errors
+
+            var thisButton = sender as Button;
+            if (thisButton.Text == "View Error Logs")
+            {
+                thisButton.Text = "Hide Error Logs";
+                errorListLayout.IsVisible = true;
+                infoAndThemeLayout.IsVisible = false;
+            }
+            else
+            {
+                thisButton.Text = "View Error Logs";
+                errorListLayout.IsVisible = false;
+                infoAndThemeLayout.IsVisible = true;
+            }
+            errorList.ItemsSource = myErrors;
         }
     }
 }

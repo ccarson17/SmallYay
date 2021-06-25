@@ -81,9 +81,17 @@ namespace SmallYay.Models
             else
             {
                 if (WineName.Contains(Varietal)) winename_display = WineName ?? "";
-                else winename_display = WineName + ", " + Varietal;
+                //else winename_display = Varietal + " - " + WineName;
+                else
+                {
+                    winename_display = WineName + " " + Varietal;
+                    if (winename_display.Length > 27) {
+                        if (Varietal.Length >= 27) winename_display = Varietal;
+                        else winename_display = WineName.Substring(0, 24 - Varietal.Length) + "... " + Varietal;
+                    }
+                }
             }
-            if(String.IsNullOrEmpty(City_Town))
+            if (String.IsNullOrEmpty(City_Town))
             {
                 if (String.IsNullOrEmpty(State_Province)) location_display = Region + (String.IsNullOrEmpty(Country) ? "" : ", " + Country);
                 else if (String.IsNullOrEmpty(Region)) location_display = State_Province + (String.IsNullOrEmpty(Country) ? "" : ", " + Country);

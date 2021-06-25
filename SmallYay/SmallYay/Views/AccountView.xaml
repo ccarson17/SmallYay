@@ -9,16 +9,60 @@
                     <Label Text="Please Log In" FontSize="Large" TextColor="{DynamicResource ItemTextColor}"></Label>
                 </StackLayout>
                 <StackLayout x:Name="AccountContentPanel" Margin="10">
-                    <Label Text="Your Info" FontSize="Large" FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
-                    <Label x:Name="nameLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
-                    <Label x:Name="emailLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
-                    <Label Text="Theme" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" TextColor="{DynamicResource ItemTextColor}"></Label>
-                    <Button Text="Cabernet (Default)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Cabernet_Button_Clicked"></Button>
-                    <Button Text="Chardonnay" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Chardonnay_Button_Clicked"></Button>
-                    <Button Text="Blanc (Light)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Light_Button_Clicked"></Button>
-                    <Button Text="Noir (Dark)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Dark_Button_Clicked"></Button>
+                    <StackLayout x:Name="infoAndThemeLayout">
+                        <Label Text="Your Info" FontSize="Large" FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Label x:Name="nameLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Label x:Name="emailLabel" Text="" FontSize="Medium" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Label Text="Theme" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                        <Button Text="Cabernet (Default)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Cabernet_Button_Clicked"></Button>
+                        <Button Text="Chardonnay" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Chardonnay_Button_Clicked"></Button>
+                        <Button Text="Blanc (Light)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Light_Button_Clicked"></Button>
+                        <Button Text="Noir (Dark)" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="Dark_Button_Clicked"></Button>
+                    </StackLayout>
+                    <Label Text="Admin" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" TextColor="{DynamicResource ItemTextColor}"></Label>
+                    <Button Text="View Error Logs" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="20,5,20,5" Clicked="View_Error_Logs_Clicked"></Button>
+                    <ScrollView x:Name="errorListLayout" IsVisible="false" VerticalOptions="FillAndExpand">
+                        <StackLayout>
+                            <!--<Label Text="Exception List:" FontSize="Medium" FontAttributes="Bold"></Label>-->
+                            <ListView x:Name="errorList" ItemsSource="{Binding myErrors}" RowHeight="160" Margin="0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame Style="{StaticResource ListItemOuterFrameStyle}" VerticalOptions="FillAndExpand">
+                                                <Frame Style="{StaticResource ListItemFrameStyle}" VerticalOptions="FillAndExpand">
+                                                    <ScrollView VerticalOptions="FillAndExpand" Margin="0,5,0,5">
+                                                        <StackLayout Margin="10" VerticalOptions="FillAndExpand">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="Timestamp: " FontAttributes="Bold"></Label>
+                                                                <Label Text="{Binding EntryDateTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" FontSize="Small"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="Message: " FontAttributes="Bold"></Label>
+                                                                <Label Text="{Binding ExceptionMessage}" FontSize="Small"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="Source: " FontAttributes="Bold"></Label>
+                                                                <Label Text="{Binding ExceptionSource}" FontSize="Small"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="InnerException: " FontAttributes="Bold"></Label>
+                                                                <Label Text="{Binding InnerException}" FontSize="Small"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="StackTrace: " FontAttributes="Bold"></Label>
+                                                                <Label Text="{Binding StackTrace}" FontSize="Small"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </ScrollView>
+                                                </Frame>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
-                <!--<StackLayout x:Name="LogoutPanel" IsVisible="False" VerticalOptions="EndAndExpand" HeightRequest="50" Margin="10">-->
                 <StackLayout x:Name="LogoutPanel" IsVisible="False" VerticalOptions="EndAndExpand" Margin="20">
                     <Button Clicked="LogoutClicked" Text="Log Out" VerticalOptions="StartAndExpand" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand"></Button>
                 </StackLayout>

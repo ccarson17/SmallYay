@@ -318,26 +318,33 @@ namespace SmallYay.Views
             MinRatingFilterPicker.SelectedItem = Application.Current.Properties["history_MinRating"];
             MaxRatingFilterPicker.SelectedItem = Application.Current.Properties["history_MaxRating"];
             SortOrderPicker.SelectedItem = Application.Current.Properties["history_SortOrder"];
-            MaxPriceEntry.Text = Application.Current.Properties["history_MaxPrice"].ToString();
-            MinPriceEntry.Text = Application.Current.Properties["history_MinPrice"].ToString();
+            MaxPriceEntry.Text = (Application.Current.Properties["history_MaxPrice"] ?? "").ToString();
+            MinPriceEntry.Text = (Application.Current.Properties["history_MinPrice"] ?? "").ToString();
             SearchEntry.Text = (Application.Current.Properties["history_SearchQuery"] ?? "").ToString();
         }
 
         async void initializeFilterSettings()
         {
-            if (!Application.Current.Properties.ContainsKey("history_MinYear")) Application.Current.Properties["history_MinYear"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_MaxYear")) Application.Current.Properties["history_MaxYear"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_Category")) Application.Current.Properties["history_Category"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_Varietal")) Application.Current.Properties["history_Varietal"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_Vintner")) Application.Current.Properties["history_Vintner"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_Location")) Application.Current.Properties["history_Location"] = "Any";
-            if (!Application.Current.Properties.ContainsKey("history_MinRating")) Application.Current.Properties["history_MinRating"] = "0";
-            if (!Application.Current.Properties.ContainsKey("history_MaxRating")) Application.Current.Properties["history_MaxRating"] = "0";
-            if (!Application.Current.Properties.ContainsKey("history_MaxPrice")) Application.Current.Properties["history_MaxPrice"] = "";
-            if (!Application.Current.Properties.ContainsKey("history_MinPrice")) Application.Current.Properties["history_MinPrice"] = "";
-            if (!Application.Current.Properties.ContainsKey("history_SortOrder")) Application.Current.Properties["history_SortOrder"] = "Vintner";
-            if (!Application.Current.Properties.ContainsKey("history_SearchQuery")) Application.Current.Properties["history_SearchQuery"] = "";
-            await Application.Current.SavePropertiesAsync();
+            try
+            {
+                if (!Application.Current.Properties.ContainsKey("history_MinYear")) Application.Current.Properties["history_MinYear"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_MaxYear")) Application.Current.Properties["history_MaxYear"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_Category")) Application.Current.Properties["history_Category"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_Varietal")) Application.Current.Properties["history_Varietal"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_Vintner")) Application.Current.Properties["history_Vintner"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_Location")) Application.Current.Properties["history_Location"] = "Any";
+                if (!Application.Current.Properties.ContainsKey("history_MinRating")) Application.Current.Properties["history_MinRating"] = "0";
+                if (!Application.Current.Properties.ContainsKey("history_MaxRating")) Application.Current.Properties["history_MaxRating"] = "0";
+                if (!Application.Current.Properties.ContainsKey("history_MaxPrice")) Application.Current.Properties["history_MaxPrice"] = "";
+                if (!Application.Current.Properties.ContainsKey("history_MinPrice")) Application.Current.Properties["history_MinPrice"] = "";
+                if (!Application.Current.Properties.ContainsKey("history_SortOrder")) Application.Current.Properties["history_SortOrder"] = "Vintner";
+                if (!Application.Current.Properties.ContainsKey("history_SearchQuery")) Application.Current.Properties["history_SearchQuery"] = "";
+                await Application.Current.SavePropertiesAsync();
+            }
+            catch(Exception ex)
+            {
+                var message = ex.Message;
+            }
         }
 
         UserBottleFilter getBottleFilter()

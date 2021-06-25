@@ -31,26 +31,28 @@ namespace SmallYay.Views
             DrinkButton.IsVisible = userBottle.drink_date == null;
             DeleteButton.IsVisible = userBottle.drink_date != null;
             ReviewButton.IsVisible = userBottle.drink_date != null;
+            LocateButton.IsVisible = userBottle.drink_date == null;
 
-            CancelButton.IsVisible = !DeleteButton.IsVisible;
+            //CancelButton.IsVisible = !DeleteButton.IsVisible;
+
             BuildReviewStars(userBottle.user_rating ?? 0);
             starGroup.Opacity = userBottle.user_rating == null ? 0.1 : 1;
-            if(!CancelButton.IsVisible)
-            {
+            //if(DeleteButton.IsVisible)
+            //{
 
-                Button newCancelButton = new Button()
-                {
-                    Style = (Style)Application.Current.Resources["DefaultButtonStyle"],
-                    ImageSource = ImageSource.FromFile("baseline_cancel_white_48dp.png"),
-                    Text = "Close",
-                    HorizontalOptions = LayoutOptions.FillAndExpand
-                };
-                newCancelButton.Clicked += Cancel_Button_Clicked;
-                newCancelButton.ContentLayout = new Button.ButtonContentLayout(Button.ButtonContentLayout.ImagePosition.Top, 0);
+            //    Button newCancelButton = new Button()
+            //    {
+            //        Style = (Style)Application.Current.Resources["DefaultButtonStyle"],
+            //        ImageSource = ImageSource.FromFile("baseline_cancel_white_48dp.png"),
+            //        Text = "Close",
+            //        HorizontalOptions = LayoutOptions.FillAndExpand
+            //    };
+            //    newCancelButton.Clicked += Cancel_Button_Clicked;
+            //    newCancelButton.ContentLayout = new Button.ButtonContentLayout(Button.ButtonContentLayout.ImagePosition.Top, 0);
 
-                ButtonGrid.Children.Add(newCancelButton, 1, 2);
-                Grid.SetColumnSpan(newCancelButton, 2);
-            }
+            //    ButtonGrid.Children.Add(newCancelButton, 1, 2);
+            //    Grid.SetColumnSpan(newCancelButton, 2);
+            //}
         }
 
         private async void Drink_Button_Clicked(object sender, EventArgs e)
@@ -147,6 +149,12 @@ namespace SmallYay.Views
         {
             UserBottleForDisplay userBottle = this.BindingContext as UserBottleForDisplay;
             await Navigation.PushModalAsync(new ReviewView(userBottle));
+        }
+
+        private async void Locate_Button_Clicked(object sender, EventArgs e)
+        {
+            UserBottleForDisplay userBottle = this.BindingContext as UserBottleForDisplay;
+            await Navigation.PushModalAsync(new LocateView(userBottle));
         }
 
         private async void Delete_Button_Clicked(object sender, EventArgs e)

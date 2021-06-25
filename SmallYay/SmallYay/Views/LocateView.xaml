@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmallYay.Views.LocateView" BackgroundColor="#60000000">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#60000000">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Background_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Frame x:Name="MainFrame" Style="{StaticResource PopupFrameStyle}" Padding="0" Margin="0" VerticalOptions="Center">
+                <ScrollView>
+                    <StackLayout x:Name="bottleDetailSL" VerticalOptions="StartAndExpand">
+                        <Grid RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--<StackLayout x:Name="HeaderBG" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                                <Label x:Name="Popup_Title" Text="{Binding vintner_winename_display, StringFormat='Locate - {0}'}" FontSize="Large" LineBreakMode="TailTruncation" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                            </StackLayout>-->
+
+                            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+                                <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                    <Label Text="{Binding vintner_winename_display, StringFormat='Review - {0}'}" LineBreakMode="TailTruncation" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                </StackLayout>
+                                <Button ImageSource="baseline_close_white_48dp.png" Clicked="Cancel_Button_Clicked" Style="{StaticResource CloseButtonStyle}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize"/>
+                            </AbsoluteLayout>
+                            <ScrollView x:Name="GridDisplaySV" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0, 0.55, 1, 0.82" AbsoluteLayout.LayoutFlags="All"></ScrollView>
+                        </Grid>
+                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10,10,10,10">
+                            <Button x:Name="Popup_Close_Button" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="10,10,10,10"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+            
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

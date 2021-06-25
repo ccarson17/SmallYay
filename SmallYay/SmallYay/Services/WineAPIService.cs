@@ -87,11 +87,11 @@ namespace SmallYay.Services
                 int Year = 0;
                 int.TryParse(userBottle.Year, out Year);
                 int SizeInML = 750;
-                if((userBottle.Size ?? "").Contains("ml"))
+                if ((userBottle.Size ?? "").Contains("ml"))
                 {
                     int.TryParse((userBottle.Size ?? "").Replace("ml", ""), out SizeInML);
                 }
-                else if((userBottle.Size ?? "").Contains("L"))
+                else if ((userBottle.Size ?? "").Contains("L"))
                 {
                     double doubleSize = 0.750;
                     double.TryParse((userBottle.Size ?? "").Replace("L", ""), out doubleSize);
@@ -129,7 +129,7 @@ namespace SmallYay.Services
                     var parsedObject = JObject.Parse(response.Content);
                     var errorsJson = parsedObject["errors"].ToString();
                     var errorsJsonParsed = errorsJson.Replace("[", "").Replace("]", "");
-                    var bottleErrors = JsonConvert.DeserializeObject<Bottle>(errorsJsonParsed);                  
+                    var bottleErrors = JsonConvert.DeserializeObject<Bottle>(errorsJsonParsed);
                     return "API Error: " + response.StatusCode;
                 }
                 else
@@ -143,7 +143,164 @@ namespace SmallYay.Services
                 return returnGuid;
             }
         }
+
+        public UserBottle CreateNewBottleEz(UserBottle userBottle)
+        {
+            try
+            {
+                var client = new RestClient($"{Constants.WineApiUrl}/userbottlesez");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Cache-Control", "no-cache");
+                request.AddHeader("Content-Type", "application/json");
+
+                int Year = 0;
+                int.TryParse(userBottle.Year, out Year);
+                int SizeInML = 750;
+                if ((userBottle.Size ?? "").Contains("ml"))
+                {
+                    int.TryParse((userBottle.Size ?? "").Replace("ml", ""), out SizeInML);
+                }
+                else if ((userBottle.Size ?? "").Contains("L"))
+                {
+                    double doubleSize = 0.750;
+                    double.TryParse((userBottle.Size ?? "").Replace("L", ""), out doubleSize);
+                    int.TryParse((doubleSize * 1000).ToString(), out SizeInML);
+                }
+                else
+                {
+                    int.TryParse(userBottle.Size ?? "", out SizeInML);
+                }
+
+                decimal ABVn = -1;
+                decimal.TryParse((userBottle.ABV ?? "").Replace("%", ""), out ABVn);
+                decimal? ABV = null;
+                if (ABVn != -1) ABV = ABVn;
+
+                var inputBottle = new UserBottleForEzCreation()
+                {
+                    Year = Year,
+                    Vintner = userBottle.Vintner,
+                    WineName = userBottle.WineName,
+                    Category = userBottle.Category,
+                    Varietal = userBottle.Varietal,
+                    City_Town = userBottle.City_Town,
+                    Region = userBottle.Region,
+                    State_Province = userBottle.State_Province,
+                    Country = userBottle.Country,
+                    ExpertRatings = userBottle.ExpertRatings,
+                    SizeInML = SizeInML,
+                    ABV = ABV,
+                    WinemakerNotes = userBottle.WinemakerNotes,
+                    owner_guid = userBottle.owner_guid,
+                    rack_guid = userBottle.rack_guid,
+                    rack_name = userBottle.rack_name,
+                    bottle_guid = userBottle.bottle_guid,
+                    rack_col = userBottle.col,
+                    rack_row = userBottle.row,
+                    where_bought = userBottle.where_bought,
+                    price_paid = userBottle.price_paid,
+                    user_rating = userBottle.user_rating,
+                    user_notes = userBottle.user_notes
+                };
+                string inputJSON = JsonConvert.SerializeObject(inputBottle);
+                request.AddParameter("application/json", inputJSON, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                if (response.StatusCode != System.Net.HttpStatusCode.Created)
+                {
+                    var parsedObject = JObject.Parse(response.Content);
+                    var errorsJson = parsedObject["errors"].ToString();
+                    var errorsJsonParsed = errorsJson.Replace("[", "").Replace("]", "");
+                    var bottleErrors = JsonConvert.DeserializeObject<Bottle>(errorsJsonParsed);
+                    return new UserBottle()
+                    {
+                        guid = "API Error: " + response.StatusCode
+                    };
+                }
+                else
+                {
+                    var newBottle = JsonConvert.DeserializeObject<UserBottle>(response.Content);
+                    return newBottle;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new UserBottle();
+            }
+        }
         #endregion
+
+        public string UpdateUserBottleEz(UserBottle userBottle)
+        {
+            //var oldBottle = GetUserBottle(userBottle.owner_guid, userBottle.guid, false);
+            //var bottleMatch = GetMyBottleMatchGuid(userBottle);
+
+            string bottleGuid = userBottle.guid;
+            string ownerGuid = userBottle.owner_guid;
+            var client = new RestClient($"{Constants.WineApiUrl}/userbottlesez/{bottleGuid}?ownerId={ownerGuid}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PATCH);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json-patch+json");
+
+            if (userBottle.rack_name == "Unassigned") userBottle.rack_name = null;
+
+            int Year = 0;
+            int.TryParse(userBottle.Year, out Year);
+            int SizeInML = 750;
+            if ((userBottle.Size ?? "").Contains("ml"))
+            {
+                int.TryParse((userBottle.Size ?? "").Replace("ml", ""), out SizeInML);
+            }
+            else if ((userBottle.Size ?? "").Contains("L"))
+            {
+                double doubleSize = 0.750;
+                double.TryParse((userBottle.Size ?? "").Replace("L", ""), out doubleSize);
+                int.TryParse((doubleSize * 1000).ToString(), out SizeInML);
+            }
+            else
+            {
+                double doubleSize = 0.750;
+                double.TryParse(userBottle.Size ?? "", out doubleSize);
+                if (doubleSize <= 30) doubleSize *= 1000;
+                SizeInML = (int)doubleSize;
+            }
+
+            decimal ABVn = -1;
+            decimal.TryParse((userBottle.ABV ?? "").Replace("%", ""), out ABVn);
+            decimal? ABV = null;
+            if (ABVn != -1) ABV = ABVn;
+
+            string patch = "[";
+            patch += "{\"op\":\"replace\",\"path\":\"/bottle_guid\",\"value\": \"" + userBottle.bottle_guid + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/where_bought\",\"value\": \"" + userBottle.where_bought + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/price_paid\",\"value\": \"" + userBottle.price_paid + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/rack_guid\",\"value\": \"" + userBottle.rack_guid + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/rack_name\",\"value\": \"" + userBottle.rack_name + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/rack_row\",\"value\": " + userBottle.row + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/rack_col\",\"value\": " + userBottle.col + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Vintner\",\"value\": \"" + userBottle.Vintner + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/WineName\",\"value\": \"" + userBottle.WineName + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Category\",\"value\": \"" + userBottle.Category + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Varietal\",\"value\": \"" + userBottle.Varietal + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/City_Town\",\"value\": \"" + userBottle.City_Town + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Region\",\"value\": \"" + userBottle.Region + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/State_Province\",\"value\": \"" + userBottle.State_Province + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Country\",\"value\": \"" + userBottle.Country + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/Year\",\"value\": " + Year + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/ExpertRatings\",\"value\": \"" + userBottle.ExpertRatings + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/SizeInML\",\"value\": " + SizeInML + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/ABV\",\"value\": " + ABV + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/WinemakerNotes\",\"value\": \"" + userBottle.WinemakerNotes + "\"},";
+            patch += "{\"op\":\"replace\",\"path\":\"/owner_guid\",\"value\": \"" + userBottle.owner_guid + "\"},";
+            if(userBottle.user_rating != null) patch += "{\"op\":\"replace\",\"path\":\"/user_rating\",\"value\": " + userBottle.user_rating + "},";
+            patch += "{\"op\":\"replace\",\"path\":\"/user_notes\",\"value\": \"" + userBottle.user_notes + "\"}";
+            patch += "]";
+
+            request.AddParameter("application/json-patch+json", patch, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            return response.StatusCode.ToString();
+        }
 
         #region UserBottles
         public List<UserBottle> GetMyUserBottles(string owner_guid, string getCurrentOrHistory, bool cacheAllow, UserBottleFilter filters)

@@ -11,9 +11,15 @@
             <Frame Style="{StaticResource PopupFrameStyle}" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0">
                 <ScrollView x:Name="bottleListSL" VerticalOptions="Center">
                     <StackLayout>
-                        <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
+                        <!--<StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
                             <Label Text="Choose Rack to Edit" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Default_Text_Color}"></Label>
-                        </StackLayout>
+                        </StackLayout>-->
+                        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+                            <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                <Label Text="Choose Rack to Edit" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                            </StackLayout>
+                            <Button ImageSource="baseline_close_white_48dp.png" Clicked="Background_Tapped" Style="{StaticResource CloseButtonStyle}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize"/>
+                        </AbsoluteLayout>
                         <ListView x:Name="UnassignedBottleList" ItemsSource="{Binding myRacks}" RowHeight="80" ItemTapped="ListView_ItemTapped" BackgroundColor="{DynamicResource MainPageBackgroundColor}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

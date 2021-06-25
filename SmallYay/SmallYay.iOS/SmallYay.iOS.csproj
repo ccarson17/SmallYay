@@ -244,4 +244,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\baseline_search_white_48dp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_location_on_white_48dp.png" />
+  </ItemGroup>
 </Project>

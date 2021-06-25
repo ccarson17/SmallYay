@@ -24,9 +24,11 @@ namespace SmallYay.Views
         private bool isEdit = false;
         private UserBottle ub = new UserBottle();
         private string lastSender = "";
+        private ErrorLog errorLog = new ErrorLog(false);
 
         public AddBottlePage()
         {
+            ub.Size = "750 ml";
             this.BindingContext = ub;
             InitializeComponent();
             setupAutocomplete();
@@ -39,6 +41,7 @@ namespace SmallYay.Views
             }
             CategoryPicker.ItemsSource = wineCategories;
             YearPicker.ItemsSource = wineYears;
+            App.Current.Properties["current_rack"] = "";
             this.Appearing += GetRackInfo;
         }
 
@@ -174,98 +177,109 @@ namespace SmallYay.Views
 
         private async void Save_Button_Clicked(object sender, EventArgs e)
         {
-            // run process to post form data via API
-            UserBottle userBottle = this.BindingContext as UserBottle;
-            userBottle.Year = (YearPicker.SelectedItem ?? -1).ToString();
-            userBottle.Category = (CategoryPicker.SelectedItem ?? "Not Selected").ToString();
-            string validationMessage = "";
-            if (userBottle.Year == "-1") { validationMessage += "Year is Required\n"; }
-            if (userBottle.Year == "Not Selected") { validationMessage += "Category is Required\n"; }
-            if (userBottle.Vintner == null || userBottle.Vintner == Constants.Vintner_Default) { validationMessage += "Vintner is Required\n"; userBottle.Vintner = null; }
-            if (userBottle.Varietal == null || userBottle.Varietal == Constants.Varietal_Default) { validationMessage += "Varietal is Required\n"; userBottle.Varietal = null; }
-            if (userBottle.WineName == null || userBottle.WineName == Constants.Wine_Name_Default) { validationMessage += "Wine Name is Required"; userBottle.WineName = null; }
-            if (userBottle.Region == Constants.Region_Default) userBottle.Region = null;
-            if (userBottle.City_Town == Constants.City_Town_Default) userBottle.City_Town = null;
-            if (userBottle.State_Province == Constants.State_Province_Default) userBottle.State_Province = null;
-            if (userBottle.Country == Constants.Country_Default) userBottle.Country = null;
-            if (userBottle.where_bought == Constants.Where_Bought_Default) userBottle.where_bought = null;
-            if (validationMessage != "")
+            try
             {
-                //await DisplayAlert("Validation Error", validationMessage, "OK");
-                await Navigation.PushModalAsync(new PopupMessage("Validation Error", validationMessage, "OK", "error", "message", ""));
-                return;
-            }
-            userBottle.owner_guid = wineApiService.GetApiGuid();
-            if((userBottle.rack_name ?? "Unassigned") != "Unassigned")
-            {
-                if(userBottle.row < 1 || userBottle.col < 1)
+                // run process to post form data via API
+                UserBottle userBottle = this.BindingContext as UserBottle;
+                userBottle.Year = (YearPicker.SelectedItem ?? -1).ToString();
+                userBottle.Category = (CategoryPicker.SelectedItem ?? "Not Selected").ToString();
+                string validationMessage = "";
+                if (userBottle.Year == "-1") { validationMessage += "Year is Required\n"; }
+                if (userBottle.Year == "Not Selected") { validationMessage += "Category is Required\n"; }
+                if (userBottle.Vintner == null || userBottle.Vintner == Constants.Vintner_Default) { validationMessage += "Vintner is Required\n"; userBottle.Vintner = null; }
+                if (userBottle.Varietal == null || userBottle.Varietal == Constants.Varietal_Default) { validationMessage += "Varietal is Required\n"; userBottle.Varietal = null; }
+                if (userBottle.WineName == null || userBottle.WineName == Constants.Wine_Name_Default) { validationMessage += "Wine Name is Required"; userBottle.WineName = null; }
+                if (userBottle.Region == Constants.Region_Default) userBottle.Region = null;
+                if (userBottle.City_Town == Constants.City_Town_Default) userBottle.City_Town = null;
+                if (userBottle.State_Province == Constants.State_Province_Default) userBottle.State_Province = null;
+                if (userBottle.Country == Constants.Country_Default) userBottle.Country = null;
+                if (userBottle.where_bought == Constants.Where_Bought_Default) userBottle.where_bought = null;
+                if (userBottle.Size == "750 ml") userBottle.Size = "750";
+                if(userBottle.ABV != null) userBottle.ABV = userBottle.ABV.Replace("%", "");
+                if (validationMessage != "")
                 {
-                    await Navigation.PushModalAsync(new PopupMessage("Validation Error", "Row and Column location must be chosen if a rack is chosen.", "OK", "error", "message", ""));
+                    //await DisplayAlert("Validation Error", validationMessage, "OK");
+                    await Navigation.PushModalAsync(new PopupMessage("Validation Error", validationMessage, "OK", "error", "message", ""));
                     return;
                 }
-                var myRacks = wineApiService.GetMyRacks(userBottle.owner_guid, false);
-                var thisRack = myRacks.Where(x => x.rack_name == userBottle.rack_name).FirstOrDefault();
-                userBottle.rack_guid = thisRack.guid;
-            }
-            else
-            {
-                userBottle.rack_name = null;
-                userBottle.row = 0;
-                userBottle.col = 0;
-            }
-            if (userBottle.bottle_guid == null)
-            {
-                string bottleMatch = wineApiService.GetMyBottleMatchGuid(userBottle);
-                if (String.IsNullOrEmpty(bottleMatch))
+                userBottle.owner_guid = wineApiService.GetApiGuid();
+                if ((userBottle.rack_name ?? "Unassigned") != "Unassigned")
                 {
-                    string api_response = wineApiService.CreateNewBottle(userBottle);
+                    if (userBottle.row < 1 || userBottle.col < 1)
+                    {
+                        await Navigation.PushModalAsync(new PopupMessage("Validation Error", "Row and Column location must be chosen if a rack is chosen.", "OK", "error", "message", ""));
+                        return;
+                    }
+                    var myRacks = wineApiService.GetMyRacks(userBottle.owner_guid, false);
+                    var thisRack = myRacks.Where(x => x.rack_name == userBottle.rack_name).FirstOrDefault();
+                    userBottle.rack_guid = thisRack.guid;
+                }
+                else
+                {
+                    userBottle.rack_name = null;
+                    userBottle.row = 0;
+                    userBottle.col = 0;
+                }
+                //if (userBottle.bottle_guid == null)
+                //{
+                //    string bottleMatch = wineApiService.GetMyBottleMatchGuid(userBottle);
+                //    if (String.IsNullOrEmpty(bottleMatch))
+                //    {
+                //        string api_response = wineApiService.CreateNewBottle(userBottle);
 
-                    if (api_response.Contains("error")) // handle API errors, including validation
+                //        if (api_response.Contains("error")) // handle API errors, including validation
+                //        {
+                //            //await DisplayAlert("Error", api_response, "OK");
+                //            await Navigation.PushModalAsync(new PopupMessage("Error", api_response, "OK", "error", "message", ""));
+                //        }
+                //        else
+                //        {
+                //            userBottle.bottle_guid = api_response;
+                //            //await DisplayAlert("Success", "Bottle created. Guid is: " + api_response, "OK"); // this is for testing. Instead at this point, need to create the UserBottle object based on this bottle Guid.
+                //        }
+                //    }
+                //    else
+                //    {
+                //        userBottle.bottle_guid = bottleMatch;
+                //    }
+                //}
+                UserBottle userBottleCreated = new UserBottle();
+                if (isEdit)
+                {
+                    //var response = wineApiService.UpdateUserBottle(userBottle); // replace with update function
+                    var response = wineApiService.UpdateUserBottleEz(userBottle); // replace with update function
+                    if (response.Contains("Conflict with existing bottle"))
                     {
-                        //await DisplayAlert("Error", api_response, "OK");
-                        await Navigation.PushModalAsync(new PopupMessage("Error", api_response, "OK", "error", "message", ""));
+                        await Navigation.PushModalAsync(new PopupMessage("Warning", "The rack location you have chosen is already occupied.", "OK", "error", "message", ""));
                     }
                     else
                     {
-                        userBottle.bottle_guid = api_response;
-                        //await DisplayAlert("Success", "Bottle created. Guid is: " + api_response, "OK"); // this is for testing. Instead at this point, need to create the UserBottle object based on this bottle Guid.
+                        if (response != "Created")
+                            await Navigation.PushModalAsync(new PopupMessage("Error", "API Error: Status - " + response, "OK", "error", "message", ""));
+                        else
+                            await Navigation.PushModalAsync(new PopupMessage("Success!", "Bottle Updated!", "OK", "default", "message", ""));
                     }
                 }
                 else
                 {
-                    userBottle.bottle_guid = bottleMatch;
-                }
-            }
-            UserBottle userBottleCreated = new UserBottle();
-            if (isEdit)
-            {
-                var response = wineApiService.UpdateUserBottle(userBottle); // replace with update function
-                if (response.Contains("Conflict with existing bottle"))
-                {
-                    await Navigation.PushModalAsync(new PopupMessage("Warning", "The rack location you have chosen is already occupied.", "OK", "error", "message", ""));
-                }
-                else
-                {
-                    if (response != "Created")
-                        await Navigation.PushModalAsync(new PopupMessage("Error", "API Error: Status - " + response, "OK", "error", "message", ""));
+                    //userBottleCreated = wineApiService.CreateNewUserBottle(userBottle);
+                    userBottleCreated = wineApiService.CreateNewBottleEz(userBottle);
+                    if (userBottleCreated.guid.StartsWith("API Error:"))
+                        await Navigation.PushModalAsync(new PopupMessage("Error", userBottleCreated.guid, "OK", "error", "message", ""));
                     else
-                        await Navigation.PushModalAsync(new PopupMessage("Success!", "Bottle Updated!", "OK", "default", "message", ""));
+                        await Navigation.PushModalAsync(new PopupMessage("Cheers!", "New Bottle Added!", "OK", "default", "message", ""));
                 }
+                if (Application.Current.Properties.ContainsKey("bottle_filter_value_timestamp"))
+                {
+                    Application.Current.Properties.Remove("bottle_filter_value_timestamp");
+                    await Application.Current.SavePropertiesAsync();
+                }
+                acds.PopulateAutocompleteLists(true);
             }
-            else
+            catch(Exception ex)
             {
-                userBottleCreated = wineApiService.CreateNewUserBottle(userBottle);
-                if (userBottleCreated.guid.StartsWith("API Error:"))
-                    await Navigation.PushModalAsync(new PopupMessage("Error", userBottleCreated.guid, "OK", "error", "message", ""));
-                else
-                    await Navigation.PushModalAsync(new PopupMessage("Cheers!", "New Bottle Added!", "OK", "default", "message", ""));
+                errorLog.LogError(ex);
             }
-            if (Application.Current.Properties.ContainsKey("bottle_filter_value_timestamp"))
-            {
-                Application.Current.Properties.Remove("bottle_filter_value_timestamp");
-                await Application.Current.SavePropertiesAsync();
-            }
-            acds.PopulateAutocompleteLists(true);
         }
 
         private async void Cancel_Button_Clicked(object sender, EventArgs e)
@@ -341,7 +355,7 @@ namespace SmallYay.Views
 
             if (myRacks.Count() > 0)
             {
-                rackPicker.Add("Unassigned");
+                rackPicker.Insert(0, "Unassigned");
                 RackPicker.ItemsSource = rackPicker;
                 RackPicker.SelectedIndex = 0;
                 NoRacksGrid.IsVisible = false;
@@ -365,7 +379,7 @@ namespace SmallYay.Views
 
             if (myRacks.Count() > 0)
             {
-                rackPicker.Add("Unassigned");
+                rackPicker.Insert(0, "Unassigned");
                 RackPicker.ItemsSource = rackPicker;
                 NoRacksGrid.IsVisible = false;
                 RacksGrid.IsVisible = true;

@@ -24,10 +24,14 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10">
-                                <Label Text="{Binding vintner_winename_display}" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
-                                <Label Text="{Binding location_display}" FontSize="Medium" TextColor="{DynamicResource Default_Text_Color}"></Label>
-                            </StackLayout>
+                            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+                                <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                    <Label Text="{Binding Vintner}" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                    <Label Text="{Binding winename_display}" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                    <Label Text="{Binding location_display}" FontSize="Medium" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                </StackLayout>
+                                <Button ImageSource="baseline_close_white_48dp.png" Clicked="Cancel_Button_Clicked" Style="{StaticResource CloseButtonStyle}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize"/>
+                            </AbsoluteLayout>
                             <Expander x:Name="detailExpander" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Tapped="Expander_Tapped">
                                 <Expander.Header>
                                     <Grid RowSpacing="0">
@@ -148,7 +152,8 @@
                             <Button ContentLayout="Top,0" ImageSource="baseline_content_copy_white_48dp.png" Clicked="Copy_Button_Clicked" Text="Copy" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"></Button>
                             <Button ContentLayout="Top,0" ImageSource="baseline_edit_white_48dp.png" x:Name="EditButton" Clicked="EditButton_Clicked" Text="Edit" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"></Button>
                             <Button ContentLayout="Top,0" ImageSource="baseline_delete_outline_white_48dp.png" x:Name="DeleteButton" Clicked="Delete_Button_Clicked" Text="Delete" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"></Button>
-                            <Button ContentLayout="Top,0" ImageSource="baseline_cancel_white_48dp.png" x:Name="CancelButton" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" IsVisible="false" Grid.ColumnSpan="2"></Button>
+                            <!--<Button ContentLayout="Top,0" ImageSource="baseline_cancel_white_48dp.png" x:Name="CancelButton" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" IsVisible="false" Grid.ColumnSpan="2"></Button>-->
+                            <Button ContentLayout="Top,0" ImageSource="outline_location_on_white_48dp.png" x:Name="LocateButton" Clicked="Locate_Button_Clicked" Text="Locate" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"></Button>
                             <!--<Button ContentLayout="Top,0" ImageSource="baseline_cancel_white_48dp.png" x:Name="CancelButton" Clicked="Cancel_Button_Clicked" Text="Close" Style="{StaticResource DefaultButtonStyle}" HorizontalOptions="FillAndExpand" Margin="7" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"></Button>-->
                         </Grid>
                     </StackLayout>

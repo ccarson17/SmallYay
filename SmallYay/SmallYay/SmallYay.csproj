@@ -47,6 +47,9 @@
     <Compile Update="Views\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\LocateView.xaml.cs">
+      <DependentUpon>LocateView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ReviewView.xaml.cs">
       <DependentUpon>ReviewView.xaml</DependentUpon>
     </Compile>

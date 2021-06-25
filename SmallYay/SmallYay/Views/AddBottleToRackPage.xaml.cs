@@ -56,6 +56,11 @@ namespace SmallYay.Views
             await Navigation.PopModalAsync();
         }
 
+        private async void Cancel_Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
         private async void AddBottleToRackPage_Disappearing(object sender, EventArgs e)
         {
             if (Navigation.ModalStack.Count > 0)
