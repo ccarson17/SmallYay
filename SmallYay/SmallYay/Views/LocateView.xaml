@@ -25,7 +25,7 @@
 
                             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
                                 <StackLayout BackgroundColor="{DynamicResource Default_Element_Color}" Padding="10" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                                    <Label Text="{Binding vintner_winename_display, StringFormat='Review - {0}'}" LineBreakMode="TailTruncation" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
+                                    <Label Text="{Binding vintner_winename_display, StringFormat='Locate - {0}'}" LineBreakMode="TailTruncation" FontSize="Large" TextColor="{DynamicResource Default_Text_Color}"></Label>
                                 </StackLayout>
                                 <Button ImageSource="baseline_close_white_48dp.png" Clicked="Cancel_Button_Clicked" Style="{StaticResource CloseButtonStyle}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize"/>
                             </AbsoluteLayout>

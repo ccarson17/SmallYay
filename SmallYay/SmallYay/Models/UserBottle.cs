@@ -31,6 +31,7 @@ namespace SmallYay.Models
         public string price_paid { get; set; }
         public int? user_rating { get; set; }
         public DateTime? drink_date { get; set; }
+        public DateTime? created_date { get; set; }
         public string user_notes { get; set; }
 
         public UserBottle()

@@ -33,6 +33,7 @@ namespace SmallYay.Views
             ReviewButton.IsVisible = userBottle.drink_date != null;
             LocateButton.IsVisible = userBottle.drink_date == null;
 
+
             //CancelButton.IsVisible = !DeleteButton.IsVisible;
 
             BuildReviewStars(userBottle.user_rating ?? 0);
@@ -53,6 +54,7 @@ namespace SmallYay.Views
             //    ButtonGrid.Children.Add(newCancelButton, 1, 2);
             //    Grid.SetColumnSpan(newCancelButton, 2);
             //}
+            //this.BindingContext = userBottle;
         }
 
         private async void Drink_Button_Clicked(object sender, EventArgs e)
@@ -173,8 +175,15 @@ namespace SmallYay.Views
             var userBottle = this.BindingContext as UserBottleForDisplay;
             var myBottlesApi = wineApiService.GetUserBottle(wineApiService.GetApiGuid(), userBottle.guid, false);
             var bindingBottle = new UserBottleForDisplay(myBottlesApi);
-            if(String.IsNullOrEmpty(bindingBottle.guid)) await Navigation.PopModalAsync();
-            else this.BindingContext = bindingBottle;
+            if (String.IsNullOrEmpty(bindingBottle.guid)) await Navigation.PopModalAsync();
+            else
+            {
+                if (bindingBottle.drink_date != null)
+                {
+                    bindingBottle.drink_date = TimeZoneInfo.ConvertTimeFromUtc(bindingBottle.drink_date ?? DateTime.Now, TimeZoneInfo.Local);
+                }
+                this.BindingContext = bindingBottle;
+            }
         }
 
         private async void EditButton_Clicked(object sender, EventArgs e)

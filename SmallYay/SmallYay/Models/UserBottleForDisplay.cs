@@ -31,6 +31,7 @@ namespace SmallYay.Models
         public string price_paid { get; set; }
         public int? user_rating { get; set; }
         public DateTime? drink_date { get; set; }
+        public DateTime? created_date { get; set; }
         public string user_notes { get; set; }
         public string location_display { get; set; }
         public string winename_display { get; set; }
@@ -74,6 +75,7 @@ namespace SmallYay.Models
             price_paid = bottle.price_paid;
             user_rating = bottle.user_rating;
             drink_date = bottle.drink_date;
+            created_date = bottle.created_date;
             user_notes = bottle.user_notes;
             bottle_color = "#FFFFFF";
             if (String.IsNullOrEmpty(WineName)) winename_display = Varietal ?? "";
