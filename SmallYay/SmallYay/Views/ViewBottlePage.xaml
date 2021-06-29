@@ -108,11 +108,11 @@
                                     </StackLayout>
                                     <StackLayout x:Name="created_date_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Padding="20,0,20,0">
                                         <Label Text="Added On: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
-                                        <Label Text="{Binding created_date, StringFormat='{0:M/d/yyyy h:mm tt}'}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding created_date, StringFormat='{0:M/d/yyyy}'}" TextColor="{DynamicResource ItemTextColor}"></Label>
                                     </StackLayout>
                                     <StackLayout x:Name="drink_date_label" Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Padding="20,0,20,0">
                                         <Label Text="Drink Date: " FontAttributes="Bold" TextColor="{DynamicResource ItemTextColor}"></Label>
-                                        <Label Text="{Binding drink_date, StringFormat='{0:M/d/yyyy h:mm tt}'}" TextColor="{DynamicResource ItemTextColor}"></Label>
+                                        <Label Text="{Binding drink_date, StringFormat='{0:M/d/yyyy}'}" TextColor="{DynamicResource ItemTextColor}"></Label>
                                     </StackLayout>
 
                                 </Grid>

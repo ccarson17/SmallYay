@@ -179,9 +179,9 @@ namespace SmallYay.Views
             else
             {
                 if (bindingBottle.drink_date != null)
-                {
                     bindingBottle.drink_date = TimeZoneInfo.ConvertTimeFromUtc(bindingBottle.drink_date ?? DateTime.Now, TimeZoneInfo.Local);
-                }
+                if (bindingBottle.created_date != null)
+                    bindingBottle.created_date = TimeZoneInfo.ConvertTimeFromUtc(bindingBottle.created_date ?? DateTime.Now, TimeZoneInfo.Local);
                 this.BindingContext = bindingBottle;
             }
         }
